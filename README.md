@@ -17,7 +17,7 @@ Example
             EventLoopThread >> logging in user: 'khalil'  with password: '1234'
 
 
-The `SkypeGUI` loops in a thread waiting for a user input. In this example we are blocking the loop with `std::get_line` whoever in a real GUI this would be a running
+The `SkypeGUI` loops in a thread waiting for a user input. In this example we are blocking the loop with `std::get_line` however in a real GUI this would be a constantly running
 loop. Once event is detected the GUI pushes an event to `ThreadSafeQueue`.
 
 `EventLoop` is running on another thread constantly checking `ThreadSafeQueue` for new events. Once an `Event` is available it will check the `EventType` and
