@@ -21,14 +21,14 @@ class EventHandlers {
     const std::string &data = event.get()->data();
     auto [user, password] = split_user_password(data);
 
-    std::cout << "loging in user...." << user << "with password: " << password << std::endl;
+    std::cout << "EventLoopThread >> logging in user: '" << user << "'  with password: '" << password << "'" << std::endl;
   }
 
   static void registration(EventSharedPointer event) {
     const std::string &data = event.get()->data();
     auto [user, password] = split_user_password(data);
 
-    std::cout << "registering in user...." << user << "with password: " << password << std::endl;
+    std::cout << "EventLoopThread >> registering in user: '" << user << "' with password: '" << password << "'" << std::endl;
   }
 
 

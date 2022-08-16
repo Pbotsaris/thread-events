@@ -17,12 +17,9 @@ public:
 
   void main_loop(ThreadSafeQueue<Event> &event_queue) {
     while (!quit) {
-      std::cout << "main_thread: Please enter your command.\n";
+      std::cout << "GUI thread >> Please enter your command.\n";
 
-      std::cout << "> ";
       std::getline(std::cin, line);
-
-      std::cout << "\n";
 
       if (line == "quit") {
          quit = true;
@@ -33,15 +30,17 @@ public:
 
       auto [command, argument] = split_input(line);
 
-      if (command == "login") {
-        std::cout << "GUI pushing to login with arguments -> " << argument << std::endl;
+      // GUI can send events by pushing an event to the queue
+      if (command == "login") { 
+        std::cout << "GUI Thread >> pushing to login with arguments -> " << argument << std::endl;
         Event event(EventType::Login, std::move(argument));
         event_queue.push(event);
       }
 
+      // GUI puishing a register command
       if (command == "register") {
-        std::cout << "GUI pushing to register with arguments -> " << argument << std::endl;
-        Event event(EventType::Login, std::move(argument));
+        std::cout << "GUIT hread >> pushing to register with arguments -> " << argument << std::endl;
+        Event event(EventType::Register, std::move(argument));
         event_queue.push(event);
       }
     }
